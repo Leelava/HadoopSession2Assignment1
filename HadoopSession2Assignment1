@@ -1,0 +1,78 @@
+//Task1: Check whether the /user/acadgild  dir exists.If it doesnot exist create /user/acadgild/hadoop//
+========================================================================================================
+
+[acadgild@localhost ~]$ hadoop fs -ls /user/acadgild/hadoop
+17/11/30 17:26:57 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+ls: `/user/acadgild/hadoop': No such file or directory
+[acadgild@localhost ~]$ hadoop fs -mkdir /user/acadgild/hadoop
+17/11/30 17:27:28 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[acadgild@localhost ~]$ hadoop fs -ls /user/acadgild
+17/11/30 17:28:12 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Found 27 items
+drwxr-xr-x   - acadgild supergroup          0 2015-11-20 11:46 /user/acadgild/Pictures
+-rw-r--r--   1 acadgild supergroup        543 2017-07-17 21:51 /user/acadgild/Student.txt
+-rw-r--r--   1 acadgild supergroup        183 2017-07-01 00:38 /user/acadgild/dataset.txt
+-rw-r--r--   1 acadgild supergroup         64 2017-07-17 23:21 /user/acadgild/f1.txt
+-rw-r--r--   1 acadgild supergroup         64 2017-07-17 22:54 /user/acadgild/first.txt
+drwxr-xr-x   - acadgild supergroup          0 2017-11-30 17:27 /user/acadgild/hadoop
+drwxr-xr-x   - acadgild supergroup          0 2017-11-30 17:23 /user/acadgild/hadoop1
+-rw-r--r--   1 acadgild supergroup        190 2017-07-06 16:17 /user/acadgild/inpt.txt
+-rw-r--r--   1 acadgild supergroup         83 2017-07-01 16:27 /user/acadgild/inputdata.txt
+drwxr-xr-x   - acadgild supergroup          0 2017-07-01 17:00 /user/acadgild/maxtemp
+drwxr-xr-x   - acadgild supergroup          0 2015-11-17 02:03 /user/acadgild/oozie-acad
+-rw-r--r--   1 acadgild supergroup        190 2017-07-06 16:04 /user/acadgild/otpt
+drwxr-xr-x   - acadgild supergroup          0 2017-07-06 17:04 /user/acadgild/out
+drwxr-xr-x   - acadgild supergroup          0 2017-07-01 00:49 /user/acadgild/output
+drwxr-xr-x   - acadgild supergroup          0 2017-07-06 17:38 /user/acadgild/result
+drwxr-xr-x   - acadgild supergroup          0 2017-07-06 17:41 /user/acadgild/result1
+drwxr-xr-x   - acadgild supergroup          0 2017-07-11 21:21 /user/acadgild/result1MAP
+drwxr-xr-x   - acadgild supergroup          0 2017-07-11 21:54 /user/acadgild/result2MAP
+drwxr-xr-x   - acadgild supergroup          0 2017-07-11 17:45 /user/acadgild/resultMAP
+drwxr-xr-x   - acadgild supergroup          0 2015-11-17 02:00 /user/acadgild/share
+-rw-r--r--   1 acadgild supergroup        733 2017-07-11 16:22 /user/acadgild/television.txt
+drwxr-xr-x   - acadgild supergroup          0 2017-07-11 23:37 /user/acadgild/unitSoldOut
+drwxr-xr-x   - acadgild supergroup          0 2017-07-11 23:49 /user/acadgild/unitSoldOut1
+drwxr-xr-x   - acadgild supergroup          0 2017-07-12 16:26 /user/acadgild/unitSoldOutS1
+drwxr-xr-x   - acadgild supergroup          0 2017-07-12 16:32 /user/acadgild/unitSoldOutS2
+drwxr-xr-x   - acadgild supergroup          0 2017-07-12 15:57 /user/acadgild/unitSoldOutState1
+drwxr-xr-x   - acadgild supergroup          0 2017-07-12 16:11 /user/acadgild/unitSoldOutState2
+[acadgild@localhost ~]$ 
+
+//Task2:creating a file in hadoop dir and displaying the contents whatever is typed on the screen//
+
+[acadgild@localhost ~]$ hadoop fs -touchz /user/acadgild/hadoop/word-count.txt
+17/11/30 17:37:29 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[acadgild@localhost ~]$ hadoop fs -ls /user/acadgild/hadoop
+17/11/30 17:37:50 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Found 1 items
+-rw-r--r--   1 acadgild supergroup          0 2017-11-30 17:37 /user/acadgild/hadoop/word-count.txt
+[acadgild@localhost ~]$ ls
+Brundesh                                     FMS.jar        Music                  pig_1502843142310.log  test1
+derby.log                                    Four.jar       newfile                pig_1502843201103.log  test2
+Desktop                                      hadoop         output                 Public                 Videos
+Documents                                    hdfs:          Pictures               result                 workspace
+Downloads                                    hive-site.xml  pig_1502383539466.log  student-det            workspace1
+eclipse                                      kamath         pig_1502448726126.log  Student-duprec.txt     w.txt
+eclipse-jee-neon-M3-linux-gtk-x86_64.tar.gz  leela          pig_1502448895182.log  Student.txt
+FilterNARec.jar                              metastore_db   pig_1502794695066.log  Templates
+[acadgild@localhost ~]$ pwd
+/home/acadgild
+[acadgild@localhost ~]$ cat > wordcount.txt
+To forget or not to forget
+everyone has right to be forgotten online, though not necessarily n every situation.
+The internet is full of information available at the click of a button.
+^C
+[acadgild@localhost ~]$ cat wordcount.txt
+To forget or not to forget
+everyone has right to be forgotten online, though not necessarily n every situation.
+The internet is full of information available at the click of a button.
+[acadgild@localhost ~]$ hadoop fs -appendToFile wordcount.txt /user/acadgild/hadoop/word-count.txt
+17/11/30 17:44:25 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[acadgild@localhost ~]$ hadoop fs -cat /user/acadgild/hadoop/word-count.txt
+17/11/30 17:44:57 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+To forget or not to forget
+everyone has right to be forgotten online, though not necessarily n every situation.
+The internet is full of information available at the click of a button.
+[acadgild@localhost ~]$ 
+
+
